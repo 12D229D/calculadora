@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora Multi-Modo (Básica y Científica)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <div class="calc-wrapper">
+        <main class="calculator-container" role="application" aria-label="Calculadora Digital">
+            <header class="calculator-header">
+                <h1>Calculadora</h1>
+                <div class="mode-tabs" role="tablist" aria-label="Selector de modo">
+                    <button class="mode-tab active" data-mode="basic" aria-label="Modo básico" role="tab" aria-selected="true" id="tab-basic">Básico</button>
+                    <button class="mode-tab" data-mode="scientific" aria-label="Modo científico" role="tab" aria-selected="false" id="tab-sci">Científica</button>
+                </div>
+            </header>
+
+            <div class="display" role="region" aria-label="Pantalla de resultados">
+                <div class="display-history" id="display-history" aria-live="polite"></div>
+                <div class="display-current" id="display-current" aria-live="assertive" aria-atomic="true">0</div>
+            </div>
+
+            <!-- Modo Básico -->
+            <div class="keypad basic-keypad active" id="basic-keypad" role="tabpanel" aria-labelledby="tab-basic">
+                <button class="btn function clear" data-action="clear" aria-label="Limpiar todo">C</button>
+                <button class="btn function negate" data-action="negate" aria-label="Cambiar signo">±</button>
+                <button class="btn function percent" data-action="percent" aria-label="Porcentaje">%</button>
+                <button class="btn operator" data-action="divide" aria-label="Dividir">÷</button>
+
+                <button class="btn number" data-value="7" aria-label="Número 7">7</button>
+                <button class="btn number" data-value="8" aria-label="Número 8">8</button>
+                <button class="btn number" data-value="9" aria-label="Número 9">9</button>
+                <button class="btn operator" data-action="multiply" aria-label="Multiplicar">×</button>
+
+                <button class="btn number" data-value="4" aria-label="Número 4">4</button>
+                <button class="btn number" data-value="5" aria-label="Número 5">5</button>
+                <button class="btn number" data-value="6" aria-label="Número 6">6</button>
+                <button class="btn operator" data-action="subtract" aria-label="Restar">−</button>
+
+                <button class="btn number" data-value="1" aria-label="Número 1">1</button>
+                <button class="btn number" data-value="2" aria-label="Número 2">2</button>
+                <button class="btn number" data-value="3" aria-label="Número 3">3</button>
+                <button class="btn operator" data-action="add" aria-label="Sumar">+</button>
+
+                <button class="btn number zero" data-value="0" aria-label="Número 0">0</button>
+                <button class="btn decimal" data-action="decimal" aria-label="Punto decimal">.</button>
+                <button class="btn equals" data-action="equals" aria-label="Calcular resultado">=</button>
+            </div>
+
+            <!-- Modo Científico -->
+            <div class="keypad scientific-keypad" id="scientific-keypad" role="tabpanel" aria-labelledby="tab-sci" hidden>
+                <div class="scientific-row">
+                    <button class="btn sci-function" data-action="sin" aria-label="Función Seno">sin</button>
+                    <button class="btn sci-function" data-action="cos" aria-label="Función Coseno">cos</button>
+                    <button class="btn sci-function" data-action="tan" aria-label="Función Tangente">tan</button>
+                    <button class="btn sci-function" data-action="log" aria-label="Logaritmo base 10">log</button>
+                    <button class="btn sci-function" data-action="ln" aria-label="Logaritmo natural">ln</button>
+                </div>
+                <div class="scientific-row">
+                    <button class="btn sci-function" data-action="sqrt" aria-label="Raíz cuadrada">√</button>
+                    <button class="btn sci-function" data-action="pow" aria-label="Potencia x a la y">xʸ</button>
+                    <button class="btn sci-function" data-action="factorial" aria-label="Factorial n!">n!</button>
+                    <button class="btn sci-function" data-action="pi" aria-label="Constante Pi">π</button>
+                    <button class="btn sci-function" data-action="euler" aria-label="Constante de Euler e">e</button>
+                </div>
+                <div class="scientific-row">
+                    <button class="btn sci-function" data-action="asin" aria-label="Función Arcoseno">sin⁻¹</button>
+                    <button class="btn sci-function" data-action="acos" aria-label="Función Arcocoseno">cos⁻¹</button>
+                    <button class="btn sci-function" data-action="atan" aria-label="Función Arcotangente">tan⁻¹</button>
+                    <button class="btn sci-function" data-action="abs" aria-label="Valor absoluto">|x|</button>
+                    <button class="btn sci-function" data-action="inv" aria-label="Inversa 1 sobre x">1/x</button>
+                </div>
+                <div class="standard-row">
+                    <button class="btn function clear" data-action="clear" aria-label="Limpiar todo">C</button>
+                    <button class="btn function negate" data-action="negate" aria-label="Cambiar signo">±</button>
+                    <button class="btn function percent" data-action="percent" aria-label="Porcentaje">%</button>
+                    <button class="btn operator" data-action="divide" aria-label="Dividir">÷</button>
+
+                    <button class="btn number" data-value="7" aria-label="Número 7">7</button>
+                    <button class="btn number" data-value="8" aria-label="Número 8">8</button>
+                    <button class="btn number" data-value="9" aria-label="Número 9">9</button>
+                    <button class="btn operator" data-action="multiply" aria-label="Multiplicar">×</button>
+
+                    <button class="btn number" data-value="4" aria-label="Número 4">4</button>
+                    <button class="btn number" data-value="5" aria-label="Número 5">5</button>
+                    <button class="btn number" data-value="6" aria-label="Número 6">6</button>
+                    <button class="btn operator" data-action="subtract" aria-label="Restar">−</button>
+
+                    <button class="btn number" data-value="1" aria-label="Número 1">1</button>
+                    <button class="btn number" data-value="2" aria-label="Número 2">2</button>
+                    <button class="btn number" data-value="3" aria-label="Número 3">3</button>
+                    <button class="btn operator" data-action="add" aria-label="Sumar">+</button>
+
+                    <button class="btn number zero" data-value="0" aria-label="Número 0">0</button>
+                    <button class="btn decimal" data-action="decimal" aria-label="Punto decimal">.</button>
+                    <button class="btn equals" data-action="equals" aria-label="Calcular resultado">=</button>
+                </div>
+            </div>
+        </main>
+
+        <!-- Panel de Historial -->
+        <aside class="history-panel" id="history-panel" aria-label="Historial de cálculos">
+            <div class="history-header">
+                <h2>Historial</h2>
+                <div class="history-actions">
+                    <button class="btn-history-clear" id="btn-history-clear" title="Borrar historial" aria-label="Limpiar historial">Limpiar</button>
+                    <button class="btn-history-export" id="btn-history-export" title="Exportar a JSON" aria-label="Exportar historial a archivo JSON">Exportar</button>
+                </div>
+            </div>
+            <div class="history-list" id="history-list" role="log" aria-live="polite">
+                <div class="history-empty">No hay operaciones registradas</div>
+            </div>
+        </aside>
+    </div>
+
+    <footer class="calculator-footer">
+        <p>Presiona <kbd>Tab</kbd> para alternar modo • <kbd>Esc</kbd> para limpiar • <kbd>Enter</kbd> para calcular</p>
+    </footer>
+
+    <script src="scripts/calculator.js"></script>
+</body>
+</html>
